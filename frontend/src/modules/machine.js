@@ -88,6 +88,7 @@ export default class WebMachine {
       node.removeClass('currentState')
       node.removeClass(escapedName)
       node.removeClass(this.modelClasses[modelName])
+      node.data('label', node.data('label').replace(`\n${modelName}`, ''))
       // console.log(node)
     })
     const states = (Array.isArray(state)) ? state : [state]
@@ -97,6 +98,7 @@ export default class WebMachine {
       node.addClass('currentState')
       node.addClass(escapedName)
       node.addClass(this.modelClasses[modelName])
+      node.data('label', node.data('label') + `\n${modelName}`)
     })
     if (this.cyLegend) {
       this.cyLegend.nodes(`#${modelName}`).css({content: `${modelName} <${this.modelClasses[modelName]}>\nState: ${states.join(', ')}`})
